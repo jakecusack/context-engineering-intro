@@ -1,0 +1,27 @@
+# Core Pydantic AI and dependencies
+pydantic-ai==0.0.14
+pydantic==2.10.3
+typing-extensions==4.12.2
+
+# HTTP client for MCP communication
+httpx==0.28.1
+aiohttp==3.11.10
+
+# Web search integration
+requests==2.32.3
+
+# Environment and configuration
+python-dotenv==1.0.1
+pydantic-settings==2.7.0
+
+# LLM providers
+openai==1.57.2
+anthropic==0.39.0
+
+# Development and testing
+pytest==8.3.4
+pytest-asyncio==0.24.0
+pytest-mock==3.14.0
+
+# Optional: For advanced logging
+structlog==24.4.0
