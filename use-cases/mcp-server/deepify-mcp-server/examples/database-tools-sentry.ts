@@ -7,9 +7,9 @@ import {
 	ExecuteDatabaseSchema,
 	createErrorResponse,
 	createSuccessResponse
-} from "../types";
-import { validateSqlQuery, isWriteOperation, formatDatabaseError } from "../database/security";
-import { withDatabase } from "../database/utils";
+} from "../src/types";
+import { validateSqlQuery, isWriteOperation, formatDatabaseError } from "../src/database/security";
+import { withDatabase } from "../src/database/utils";
 
 const ALLOWED_USERNAMES = new Set<string>([
 	// Add GitHub usernames of users who should have access to database write operations

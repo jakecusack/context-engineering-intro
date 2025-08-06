@@ -35,7 +35,7 @@ export function registerPRPParserTools(server: McpServer, env: Env, props: Props
         // Initialize PRP parser service
         const parserService = new PRPParserService(
           env.ANTHROPIC_API_KEY,
-          env.ANTHROPIC_MODEL
+          env.ANTHROPIC_MODEL || 'claude-3-5-haiku-latest'
         );
 
         // Parse PRP content
