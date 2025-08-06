@@ -18,7 +18,7 @@ vi.mock('../../../src/database/utils', () => ({
 
 // Now import the modules
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { registerDatabaseTools } from '../../../src/tools/database-tools'
+import { registerDatabaseTools } from '../../../examples/database-tools'
 import { mockProps, mockPrivilegedProps } from '../../fixtures/auth.fixtures'
 import { mockEnv } from '../../mocks/oauth.mock'
 import { mockTableColumns, mockQueryResult } from '../../fixtures/database.fixtures'
@@ -100,7 +100,7 @@ describe('Database Tools', () => {
       
       // Get the registered tool handler
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'listTables')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({})
       
@@ -117,7 +117,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'listTables')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({})
       
@@ -132,7 +132,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'queryDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'SELECT * FROM users' })
       
@@ -146,7 +146,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'queryDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'INSERT INTO users VALUES (1, \'test\')' })
       
@@ -159,7 +159,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'queryDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'SELECT * FROM users; DROP TABLE users' })
       
@@ -173,7 +173,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'queryDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'SELECT * FROM users' })
       
@@ -205,7 +205,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockPrivilegedProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'executeDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'INSERT INTO users VALUES (1, \'test\')' })
       
@@ -219,7 +219,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockPrivilegedProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'executeDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'SELECT * FROM users' })
       
@@ -232,7 +232,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockPrivilegedProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'executeDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'SELECT * FROM users; DROP TABLE users' })
       
@@ -246,7 +246,7 @@ describe('Database Tools', () => {
       registerDatabaseTools(mockServer, mockEnv as any, mockPrivilegedProps)
       
       const toolCall = toolSpy.mock.calls.find(call => call[0] === 'executeDatabase')
-      const handler = toolCall![3] as Function
+      const handler = toolCall![3] as any
       
       const result = await handler({ sql: 'INSERT INTO users VALUES (1, \'test\')' })
       

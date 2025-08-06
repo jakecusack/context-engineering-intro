@@ -12,7 +12,7 @@ import { registerDatabaseToolsWithSentry } from "./tools/database-tools-sentry";
 function getSentryConfig(env: Env) {
 	return {
 		// You can disable Sentry by setting SENTRY_DSN to a falsey-value
-		dsn: (env as any).SENTRY_DSN,
+		dsn: env.SENTRY_DSN,
 		// A sample rate of 1.0 means "capture all traces"
 		tracesSampleRate: 1,
 	};

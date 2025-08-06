@@ -61,7 +61,7 @@ export function registerPRPParserTools(server: McpServer, env: Env, props: Props
               VALUES (
                 ${prpContent}, 
                 ${JSON.stringify(parsedResult)}, 
-                ${env.ANTHROPIC_MODEL}, 
+                ${env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022'}, 
                 ${props.login}, 
                 'success',
                 ${parsedResult.projectContext.projectName}
@@ -139,7 +139,7 @@ ${parsingHistoryId ? `**Parsing History ID:** ${parsingHistoryId}` : ''}
               )
               VALUES (
                 ${prpContent}, 
-                ${env.ANTHROPIC_MODEL}, 
+                ${env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022'}, 
                 ${props.login}, 
                 'error',
                 ${error instanceof Error ? error.message : String(error)},

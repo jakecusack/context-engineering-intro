@@ -11,10 +11,10 @@ from urllib.request import urlopen, Request
 from urllib.error import URLError, HTTPError
 
 
-# 🔥 UPDATE THIS with your actual Cloudflare Workers URL after GitHub Actions deployment
-PRODUCTION_MCP_URL = "https://your-worker-name.your-subdomain.workers.dev/mcp"
+# 🔥 Your production MCP server at deepify.org
+PRODUCTION_MCP_URL = "https://deepify.org/mcp"
 
-# Alternative: If you know your worker name, it might be:
+# Alternative worker URL if needed:
 # PRODUCTION_MCP_URL = "https://deepify-mcp-server.jakecusack.workers.dev/mcp"
 
 

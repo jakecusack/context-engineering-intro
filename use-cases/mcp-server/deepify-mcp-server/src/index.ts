@@ -33,7 +33,7 @@ export class DeepifyMCP extends McpAgent<Env, Record<string, never>, Props> {
 
 	async init() {
 		// Register all tools based on user permissions
-		registerAllTools(this.server, this.env, this.props);
+		registerAllTools(this.server, this.env as any, this.props);
 	}
 }
 

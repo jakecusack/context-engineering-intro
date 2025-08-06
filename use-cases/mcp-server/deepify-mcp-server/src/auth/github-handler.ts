@@ -20,9 +20,9 @@ app.get("/authorize", async (c) => {
 	}
 
 	if (
-		await clientIdAlreadyApproved(c.req.raw, oauthReqInfo.clientId, (c.env as any).COOKIE_ENCRYPTION_KEY)
+		await clientIdAlreadyApproved(c.req.raw, oauthReqInfo.clientId, c.env.COOKIE_ENCRYPTION_KEY)
 	) {
-		return redirectToGithub(c.req.raw, oauthReqInfo, c.env, {});
+		return redirectToGithub(c.req.raw, oauthReqInfo, c.env as any, {});
 	}
 
 	return renderApprovalDialog(c.req.raw, {
@@ -38,12 +38,12 @@ app.get("/authorize", async (c) => {
 
 app.post("/authorize", async (c) => {
 	// Validates form submission, extracts state, and generates Set-Cookie headers to skip approval dialog next time
-	const { state, headers } = await parseRedirectApproval(c.req.raw, (c.env as any).COOKIE_ENCRYPTION_KEY);
+	const { state, headers } = await parseRedirectApproval(c.req.raw, c.env.COOKIE_ENCRYPTION_KEY);
 	if (!state.oauthReqInfo) {
 		return c.text("Invalid request", 400);
 	}
 
-	return redirectToGithub(c.req.raw, state.oauthReqInfo, c.env, headers);
+	return redirectToGithub(c.req.raw, state.oauthReqInfo, c.env as any, headers);
 });
 
 async function redirectToGithub(
@@ -56,7 +56,7 @@ async function redirectToGithub(
 		headers: {
 			...headers,
 			location: getUpstreamAuthorizeUrl({
-				    client_id: (env as any).OAUTH_CLIENT_ID,
+				    client_id: env.GITHUB_CLIENT_ID,
 				redirect_uri: new URL("/callback", request.url).href,
 				scope: "read:user",
 				state: btoa(JSON.stringify(oauthReqInfo)),
@@ -84,8 +84,8 @@ app.get("/callback", async (c) => {
 
 	// Exchange the code for an access token
 	const [accessToken, errResponse] = await fetchUpstreamAuthToken({
-		client_id: (c.env as any).OAUTH_CLIENT_ID,
-		client_secret: (c.env as any).OAUTH_CLIENT_SECRET,
+		client_id: c.env.GITHUB_CLIENT_ID,
+		client_secret: c.env.GITHUB_CLIENT_SECRET,
 		code: c.req.query("code"),
 		redirect_uri: new URL("/callback", c.req.url).href,
 		upstream_url: "https://github.com/login/oauth/access_token",

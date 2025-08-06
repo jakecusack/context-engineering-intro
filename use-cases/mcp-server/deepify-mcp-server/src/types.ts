@@ -130,11 +130,11 @@ export interface SqlValidationResult {
 // Environment interface for Cloudflare Workers
 export interface Env {
   DATABASE_URL: string;
-  OAUTH_CLIENT_ID: string;
-  OAUTH_CLIENT_SECRET: string;
+  GITHUB_CLIENT_ID: string;
+  GITHUB_CLIENT_SECRET: string;
   OAUTH_KV: KVNamespace;
   ANTHROPIC_API_KEY: string;
-  ANTHROPIC_MODEL: string;
+  ANTHROPIC_MODEL?: string;
   MCP_OBJECT: DurableObjectNamespace;
   COOKIE_ENCRYPTION_KEY: string;
   // Optional properties for database tools compatibility
