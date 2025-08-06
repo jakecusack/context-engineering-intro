@@ -10,7 +10,7 @@ import { PRPParsingResult, ProjectContext, PRPParsingOptions } from '../types/pr
 export class PRPParserService {
   private anthropicClient: AnthropicClient;
 
-  constructor(apiKey: string, model: string = 'claude-3-5-haiku-latest') {
+  constructor(apiKey: string, model: string = 'claude-3-5-sonnet-20241022') {
     this.anthropicClient = new AnthropicClient(apiKey, model);
   }
 
